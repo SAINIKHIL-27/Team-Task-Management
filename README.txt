@@ -67,8 +67,8 @@ LOCAL SETUP INSTRUCTIONS
    npm install
    Create a .env file with:
      PORT=5000
-     MONGO_URI=mongodb+srv://dharamsainikhil_db_user:wEllgdZ6HRp2N8Pd@cluster0.j7ao7ic.mongodb.net/teamtasks?appName=Cluster0
-     JWT_SECRET=69cf5bb57abb6a90c5ca089039725d26cf1a318b27d7764cf2a72320439c1713
+     MONGO_URI=mongodb+srv://dharamsainikhil_db_user:xxxxxxxxx@cluster0.j7ao7ic.mongodb.net/teamtasks?appName=Cluster0
+     JWT_SECRET=xxxxxxxxxxxxxxxxxxxxxxx26cf1a318b27d7764cf2a72320439c1713
      CLIENT_URL=https://innovative-motivation-production-8e2c.up.railway.app
    npm run dev
 
@@ -111,8 +111,8 @@ ENVIRONMENT VARIABLES
 
 Backend (server/.env):
   PORT=5000
-  MONGO_URI=mongodb+srv://dharamsainikhil_db_user:wEllgdZ6HRp2N8Pd@cluster0.j7ao7ic.mongodb.net/teamtasks?appName=Cluster0
-  JWT_SECRET=69cf5bb57abb6a90c5ca089039725d26cf1a318b27d7764cf2a72320439c1713
+  MONGO_URI=mongodb+srv://dharamsainikhil_db_user:xxxxxxxxx@cluster0.j7ao7ic.mongodb.net/teamtasks?appName=Cluster0
+  JWT_SECRET=xxxxxxxxxxxxxxx39725d26cf1a318b27d7764cf2a72320439c1713
   CLIENT_URL=https://innovative-motivation-production-8e2c.up.railway.app
 
 Frontend (Railway Variables):
