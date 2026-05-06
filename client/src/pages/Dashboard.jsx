@@ -44,7 +44,7 @@ function StatCard({ label, value, icon, accent, sub }) {
     <div style={cardStyle}>
       <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', background: accent, opacity: 0.05 }} />
       <div style={iconBoxStyle}>{icon}</div>
-      <p style={{ fontSize: '32px', fontWeight: '800', margin: '0 0 4px 0', color: '#0f0f13', fontFamily: 'Syne, sans-serif' }}>{value}</p>
+      <p style={{ fontSize: '32px', fontWeight: '800', margin: '0 0 4px 0', color: '#0f0f13', fontFamily: 'Syne, sans-serif' }}>{value || 0}</p>
       <p style={{ fontSize: '14px', fontWeight: '600', color: '#8888a8', margin: 0 }}>{label}</p>
       {sub && <p style={{ fontSize: '11px', marginTop: '6px', color: accent, fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{sub}</p>}
     </div>
@@ -54,10 +54,22 @@ function StatCard({ label, value, icon, accent, sub }) {
 export default function Dashboard() {
   const { user } = useAuth();
   const [stats, setStats] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    api.get('/dashboard').then(res => setStats(res.data));
+    api.get('/dashboard')
+      .then(res => setStats(res.data))
+      .catch(err => {
+        console.error("Dashboard Fetch Error:", err);
+        setError(true);
+      });
   }, []);
+
+  if (error) return (
+    <div style={{ padding: '40px', textAlign: 'center', color: '#ef4444' }}>
+      <p>Failed to load dashboard data. Please check your connection.</p>
+    </div>
+  );
 
   if (!stats) return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px' }}>
@@ -74,17 +86,17 @@ export default function Dashboard() {
       <div style={{ marginBottom: '40px' }}>
         <p style={{ fontSize: '13px', fontWeight: '700', color: '#6366f1', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>{today}</p>
         <h1 style={{ fontSize: '36px', fontWeight: '800', color: '#0f0f13', margin: 0, fontFamily: 'Syne, sans-serif' }}>
-          Welcome back, <span style={{ color: '#6366f1' }}>{user?.name?.split(' ')[0]}</span>!
+          Welcome back, <span style={{ color: '#6366f1' }}>{user?.name?.split(' ')[0] || 'User'}</span>!
         </h1>
         <p style={{ color: '#8888a8', marginTop: '8px', fontSize: '16px' }}>Here is a summary of your team's performance today.</p>
       </div>
 
       {/* Grid of Stats */}
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginBottom: '40px' }}>
-        <StatCard label="Total Tasks" value={stats.total} icon="📋" accent="#6366f1" sub="Platform-wide" />
-        <StatCard label="Completed" value={stats.completed} icon="✅" accent="#059669" sub={`${stats.total ? Math.round(stats.completed / stats.total * 100) : 0}% success`} />
-        <StatCard label="In Progress" value={stats.inProgress} icon="⚡" accent="#d97706" sub="Immediate focus" />
-        <StatCard label="Overdue" value={stats.overdue} icon="⚠️" accent="#ef4444" sub="Attention required" />
+        <StatCard label="Total Tasks" value={stats?.total} icon="📋" accent="#6366f1" sub="Platform-wide" />
+        <StatCard label="Completed" value={stats?.completed} icon="✅" accent="#059669" sub={`${stats?.total ? Math.round(stats.completed / stats.total * 100) : 0}% success`} />
+        <StatCard label="In Progress" value={stats?.inProgress} icon="⚡" accent="#d97706" sub="Immediate focus" />
+        <StatCard label="Overdue" value={stats?.overdue} icon="⚠️" accent="#ef4444" sub="Attention required" />
       </div>
 
       {/* Tasks Table/List Container */}
@@ -98,7 +110,8 @@ export default function Dashboard() {
         </div>
 
         <div style={{ minHeight: '100px' }}>
-          {stats.myTasks.length === 0 ? (
+          {/* CRITICAL FIX: Added Optional Chaining and fallback to 0 */}
+          {(stats?.myTasks?.length || 0) === 0 ? (
             <div style={{ textAlign: 'center', padding: '60px' }}>
               <p style={{ color: '#8888a8', fontWeight: '600' }}>No tasks assigned to you right now. 🎉</p>
             </div>
