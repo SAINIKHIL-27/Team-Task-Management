@@ -1,4 +1,4 @@
-const Task = require('../models/Task');
+const Task = require('../models/task');
 
 exports.getTasks = async (req, res) => {
   const { projectId, status, priority } = req.query;
