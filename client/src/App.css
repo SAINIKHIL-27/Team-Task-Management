@@ -1,0 +1,356 @@
+/* =========================
+   MODERN PREMIUM UI STYLES
+========================= */
+
+.counter {
+  position: relative;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 14px;
+  color: var(--accent);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  margin-bottom: 28px;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-border);
+    box-shadow:
+      0 16px 35px rgba(0, 0, 0, 0.18),
+      0 0 0 4px rgba(99, 102, 241, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+  }
+
+  .base {
+    width: 190px;
+    position: relative;
+    z-index: 0;
+    filter:
+      drop-shadow(0 20px 40px rgba(99, 102, 241, 0.25))
+      drop-shadow(0 0 20px rgba(168, 85, 247, 0.2));
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 2;
+    top: 32px;
+    height: 30px;
+
+    transform:
+      perspective(2000px)
+      rotateZ(300deg)
+      rotateX(44deg)
+      rotateY(39deg)
+      scale(1.45);
+
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  }
+
+  .vite {
+    z-index: 1;
+    top: 110px;
+    height: 28px;
+    width: auto;
+
+    transform:
+      perspective(2000px)
+      rotateZ(300deg)
+      rotateX(40deg)
+      rotateY(39deg)
+      scale(0.9);
+
+    opacity: 0.9;
+    filter: blur(0.2px);
+  }
+
+  &:hover {
+    .base {
+      transform: scale(1.04);
+    }
+
+    .framework {
+      transform:
+        perspective(2000px)
+        rotateZ(300deg)
+        rotateX(44deg)
+        rotateY(39deg)
+        scale(1.52);
+    }
+
+    .vite {
+      transform:
+        perspective(2000px)
+        rotateZ(300deg)
+        rotateX(40deg)
+        rotateY(39deg)
+        scale(0.96);
+    }
+  }
+}
+
+/* =========================
+   CENTER CONTENT
+========================= */
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  padding: 48px 24px;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 28px;
+    gap: 22px;
+  }
+}
+
+/* =========================
+   NEXT STEPS SECTION
+========================= */
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  backdrop-filter: blur(20px);
+
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 38px;
+
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    @media (max-width: 1024px) {
+      padding: 26px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 18px;
+    width: 24px;
+    height: 24px;
+
+    filter: drop-shadow(0 6px 10px rgba(99, 102, 241, 0.2));
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-h);
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--text);
+    line-height: 1.7;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =========================
+   DOCS SECTION
+========================= */
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* =========================
+   LINKS / BUTTONS
+========================= */
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+
+  display: flex;
+  gap: 12px;
+
+  margin: 34px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    position: relative;
+
+    color: var(--text-h);
+    font-size: 15px;
+    font-weight: 600;
+
+    border-radius: 14px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    text-decoration: none;
+
+    backdrop-filter: blur(16px);
+
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+
+      border-color: rgba(99, 102, 241, 0.3);
+
+      box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.18),
+        0 0 0 4px rgba(99, 102, 241, 0.08);
+    }
+
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* =========================
+   SPACER
+========================= */
+
+#spacer {
+  height: 90px;
+  border-top: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.015),
+      transparent
+    );
+
+  @media (max-width: 1024px) {
+    height: 52px;
+  }
+}
+
+/* =========================
+   TICKS
+========================= */
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}
